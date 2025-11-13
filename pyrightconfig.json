@@ -1,0 +1,10 @@
+{
+    "include": ["app"],
+    "exclude": ["test", ".venv"],
+    "venvPath": ".",
+    "venv": ".venv",
+    "reportMissingImports": true,
+    "reportOptionalMemberAccess": false,
+    "reportUntypedFunctionDecorator": false,
+    "typeCheckingMode": "strict"
+}
