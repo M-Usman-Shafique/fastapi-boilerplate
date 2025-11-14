@@ -14,3 +14,6 @@ dev-check:
 	uv run ruff format . \
 	&& uv run ruff check . \
 	&& uv run pyright
+
+server:
+	uv run python -m app.main

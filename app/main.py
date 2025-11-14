@@ -1,6 +1,14 @@
-def main():
-    print("Hello from FastAPI!")
+import uvicorn
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello World"}
+
 
 
 if __name__ == "__main__":
-    main()
+    uvicorn.run("app.main:app", loop="uvloop", http="httptools", reload=True)
