@@ -15,5 +15,8 @@ dev-check:
 	&& uv run ruff check . \
 	&& uv run pyright
 
-server:
-	uv run python -m app.main
+dev-server:
+	ENV-dev uv run python -m app.main
+
+prod-server:
+	ENV=prod uv run python -m app.main

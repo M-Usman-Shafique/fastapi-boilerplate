@@ -1,15 +1,15 @@
+import os
 from functools import lru_cache
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+ENV = os.getenv("ENV", "dev")
 
 class Settings(BaseSettings):
     APP_NAME: str
     DEBUG: bool
 
-    model_config = SettingsConfigDict(
-        env_file=".env", env_file_encoding="utf-8", case_sensitive=True
-    )
+    model_config = SettingsConfigDict(env_file=f".env.{ENV}", case_sensitive=True)
 
 
 @lru_cache
