@@ -26,5 +26,8 @@ exclude = ["test", ".venv"]
 select = ["E", "F", "I", "B", "UP", "SIM"]
 ignore = ["E501"]
 
+[tool.ruff.lint.per-file-ignores]
+"app/api/routers/*.py" = ["B008"]
+
 [tool.ruff.lint.isort]
 known-first-party = ["app"]

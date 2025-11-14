@@ -15,8 +15,27 @@ dev-check:
 	&& uv run ruff check . \
 	&& uv run pyright
 
-dev-server:
-	ENV-dev uv run python -m app.main
+dev-start:
+	echo "Starting in DEV mode"
+	ENV=dev uv run uvicorn app.main:app \
+		--loop uvloop \
+		--http httptools \
+		--host 0.0.0.0 \
+		--port 8000
 
-prod-server:
-	ENV=prod uv run python -m app.main
+dev-run:
+	echo "Starting in DEV mode (auto-reload)"
+	ENV=dev uv run uvicorn app.main:app \
+		--reload \
+		--loop uvloop \
+		--http httptools \
+		--host 0.0.0.0 \
+		--port 8000
+
+prod-start:
+	echo "Starting in PROD mode"
+	ENV=prod uv run uvicorn app.main:app \
+		--loop uvloop \
+		--http httptools \
+		--host 0.0.0.0 \
+		--port 8000
