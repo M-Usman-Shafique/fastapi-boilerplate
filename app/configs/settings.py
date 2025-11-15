@@ -9,6 +9,8 @@ class Settings(BaseSettings):
     APP_ENV: str
     APP_NAME: str
     DEBUG: bool
+    MONGODB_URI: str
+    MONGODB_DB: str
 
     model_config = SettingsConfigDict(env_file=f".env.{ENV}", case_sensitive=True)
 

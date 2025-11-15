@@ -15,6 +15,9 @@ dev-check:
 	&& uv run ruff check . \
 	&& uv run pyright
 
+pre-commit-install:
+	uv run pre-commit install --install-hooks
+
 dev-start:
 	echo "Starting in DEV mode"
 	ENV=dev uv run uvicorn app.main:app \
