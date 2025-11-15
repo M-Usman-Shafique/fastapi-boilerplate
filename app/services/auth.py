@@ -1,3 +1,6 @@
+from fastapi import HTTPException
+
+
 class AuthService:
     def login(self):
-        return {"message": "Logged in successfully!"}
+        raise HTTPException(status_code=403, detail="Forbidden area")

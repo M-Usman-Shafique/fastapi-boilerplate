@@ -6,6 +6,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 ENV = os.getenv("ENV", "dev")
 
 class Settings(BaseSettings):
+    APP_ENV: str
     APP_NAME: str
     DEBUG: bool
 

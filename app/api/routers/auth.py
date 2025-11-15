@@ -6,6 +6,6 @@ from app.services.auth import AuthService
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 
-@router.get("/")
+@router.get("/login")
 def login( auth_service: AuthService = Depends(get_auth_service)):
     return auth_service.login()
