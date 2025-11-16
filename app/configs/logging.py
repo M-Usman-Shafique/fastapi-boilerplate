@@ -1,20 +1,42 @@
-import logging
 import sys
+
+from loguru import logger
 
 from app.configs.settings import get_settings
 
 settings = get_settings()
 
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+logger.remove()
 
-formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+logger.level("INFO", color="<blue>")
+logger.level("SUCCESS", color="<green>")
+logger.level("DEBUG", color="<YELLOW>")
+logger.level("WARNING", color="<yellow>")
+logger.level("ERROR", color="<red>")
+logger.level("CRITICAL", color="<RED>")
 
-stream_handler = logging.StreamHandler(sys.stdout)
-stream_handler.setFormatter(formatter)
-logger.addHandler(stream_handler)
+FORMAT = (
+    "<level>[{time:YYYY-MM-DD HH:mm:ss}]</level> "
+    "<level>[{level}]</level> "
+    "<level>{message}</level>"
+)
+
+LOG_LEVEL = "INFO" if settings.APP_ENV == "production" else "DEBUG"
+
+logger.add(
+    sys.stdout,
+    format=FORMAT,
+    colorize=True,
+    level=LOG_LEVEL,
+)
 
 if settings.APP_ENV != "production":
-    file_handler = logging.FileHandler("app.log")
-    file_handler.setFormatter(formatter)
-    logger.addHandler(file_handler)
+    logger.add(
+        "app.log",
+        format=FORMAT,
+        level="INFO",
+        colorize=False,
+        rotation="10 MB",
+        retention="7 days",
+        compression="zip",
+    )

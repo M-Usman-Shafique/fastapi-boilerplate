@@ -12,6 +12,7 @@ dependencies = [
     "certifi>=2025.11.12",
     "pymongo>=4.15.4",
     "beanie>=2.0.0",
+    "loguru>=0.7.3",
 ]
 
 [dependency-groups]

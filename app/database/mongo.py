@@ -22,7 +22,7 @@ async def init_db():
 
         try:
             await db.command("ping")
-            logger.info("✅ DB connected successfully!")
+            logger.success("✅ DB connected successfully!")
         except Exception as e:
             raise RuntimeError("❌ DB connection failed") from e
 
@@ -33,4 +33,4 @@ async def close_db():
     global client
     if client is not None:
         await client.close()
-        logger.info("⛔ DB disconnected successfully!")
+        logger.success("⛔ DB disconnected successfully!")
