@@ -18,6 +18,9 @@ dev-check:
 pre-commit-install:
 	uv run pre-commit install --install-hooks
 
+dev-debug:
+	ENV=dev uv run python -m debugpy --listen 5678 --wait-for-client -m uvicorn app.main:app --reload
+
 dev-start:
 	echo "Starting in DEV mode"
 	ENV=dev uv run uvicorn app.main:app \

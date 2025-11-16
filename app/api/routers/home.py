@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 
-from app.api.dependencies.home import get_home_service
 from app.configs.settings import Settings, get_settings
+from app.dependencies.home import get_home_service
 from app.services.home import HomeService
 
 router = APIRouter(tags=["home"])
