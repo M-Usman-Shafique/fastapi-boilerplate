@@ -5,6 +5,7 @@ from beanie import init_beanie  # type: ignore[attr-defined]
 from pymongo import AsyncMongoClient
 
 from app.api.models.registry import doc_models
+from app.configs.logging import logger
 from app.configs.settings import get_settings
 
 settings = get_settings()
@@ -21,7 +22,7 @@ async def init_db():
 
         try:
             await db.command("ping")
-            print("✅ DB connected successfully!")
+            logger.info("✅ DB connected successfully!")
         except Exception as e:
             raise RuntimeError("❌ DB connection failed") from e
 
@@ -32,4 +33,4 @@ async def close_db():
     global client
     if client is not None:
         await client.close()
-        print("⛔ DB disconnected successfully!")
+        logger.info("⛔ DB disconnected successfully!")
