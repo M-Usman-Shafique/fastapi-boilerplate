@@ -8,8 +8,8 @@ router = APIRouter(tags=["home"])
 
 
 @router.get("/")
-def read_root(
+async def read_root(
     settings: Settings = Depends(get_settings),
     home_service: HomeService = Depends(get_home_service),
 ):
-    return home_service.get_message(settings.APP_NAME)
+    return await home_service.get_message(settings.APP_NAME)

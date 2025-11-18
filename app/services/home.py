@@ -4,9 +4,9 @@ from app.utils.response import api_response
 
 
 class HomeService(BaseService):
-    def get_message(self, app_name: str):
+    async def get_message(self, app_name: str):
         prompt = "Hi, there!"
-        llm_response = llm_call(prompt)
+        llm_response = await llm_call(prompt)
         return api_response(
             {
                 "message": f"Hello from {app_name}",

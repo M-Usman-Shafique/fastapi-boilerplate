@@ -18,9 +18,6 @@ dev-check:
 pre-commit-install:
 	uv run pre-commit install --install-hooks
 
-dev-debug:
-	ENV=dev uv run python -m debugpy --listen 5678 --wait-for-client -m uvicorn app.main:app --reload
-
 dev-start:
 	echo "Starting in DEV mode"
 	ENV=dev uv run uvicorn app.main:app \
@@ -45,6 +42,8 @@ prod-start:
 		--http httptools \
 		--host 0.0.0.0 \
 		--port 8000
+dev-debug:
+	ENV=dev uv run python -m debugpy --listen 5678 --wait-for-client -m uvicorn app.main:app --reload
 
 pyc_clean:
 	find . -type d -name "__pycache__" -exec rm -r {} +

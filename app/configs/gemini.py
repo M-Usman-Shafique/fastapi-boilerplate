@@ -1,20 +1,24 @@
-from google import genai
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 from app.configs.constants import DEFAULT_MODEL
 from app.configs.settings import get_settings
 
 settings = get_settings()
 
-client = genai.Client(api_key=settings.GOOGLE_API_KEY)
+llm = ChatGoogleGenerativeAI(
+    google_api_key=settings.GOOGLE_API_KEY,
+    model=DEFAULT_MODEL,
+    temperature=0,
+    max_tokens=None,
+    timeout=None,
+    max_retries=2,
+)
 
 
-def llm_call(prompt: str, model: str = DEFAULT_MODEL) -> str | None:
+async def llm_call(prompt: str) -> str | None:
     try:
-        response = client.models.generate_content(  # type: ignore[reportUnknownMemberType]
-            model=model,
-            contents=prompt,
-        )
+        response = await llm.ainvoke(prompt)
         return response.text
 
     except Exception as e:
-        raise RuntimeError(f"Gemini client error: {e}") from e
+        raise RuntimeError(f"LLM invoke error: {e}") from e
