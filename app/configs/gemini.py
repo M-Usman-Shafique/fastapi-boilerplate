@@ -13,12 +13,3 @@ llm = ChatGoogleGenerativeAI(
     timeout=None,
     max_retries=2,
 )
-
-
-async def llm_call(prompt: str) -> str | None:
-    try:
-        response = await llm.ainvoke(prompt)
-        return response.text
-
-    except Exception as e:
-        raise RuntimeError(f"LLM invoke error: {e}") from e

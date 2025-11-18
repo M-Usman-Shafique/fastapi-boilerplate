@@ -1,7 +1,7 @@
 from typing import Any
 
 import certifi
-from beanie import init_beanie  # type: ignore[attr-defined]
+from beanie import init_beanie
 from pymongo import AsyncMongoClient
 
 from app.api.models.registry import doc_models

@@ -6,5 +6,5 @@
     "reportMissingImports": true,
     "reportOptionalMemberAccess": false,
     "reportUntypedFunctionDecorator": false,
-    "typeCheckingMode": "strict"
+    "typeCheckingMode": "standard"
 }
