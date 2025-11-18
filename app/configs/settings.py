@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     APP_NAME: str
     DEBUG: bool
     CLIENT_URL: str
+    GOOGLE_API_KEY: str
     MONGODB_URI: str
     MONGODB_DB: str
 

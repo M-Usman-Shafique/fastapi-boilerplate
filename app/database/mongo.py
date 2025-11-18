@@ -5,7 +5,7 @@ from beanie import init_beanie  # type: ignore[attr-defined]
 from pymongo import AsyncMongoClient
 
 from app.api.models.registry import doc_models
-from app.configs.logging import logger
+from app.configs.logger import logger
 from app.configs.settings import get_settings
 
 settings = get_settings()

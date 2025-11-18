@@ -10,7 +10,7 @@ def api_response(
     message: str = "Success",
     status_code: int = 200,
 ) -> ApiResponse[T]:
-    return ApiResponse[T](
+    return ApiResponse(
         success=status_code < 400,
         statusCode=status_code,
         message=message,

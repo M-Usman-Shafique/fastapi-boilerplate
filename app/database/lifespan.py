@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from app.configs.logging import logger
+from app.configs.logger import logger
 from app.database.mongo import close_db, init_db
 
 

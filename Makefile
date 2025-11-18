@@ -45,3 +45,7 @@ prod-start:
 		--http httptools \
 		--host 0.0.0.0 \
 		--port 8000
+
+pyc_clean:
+	find . -type d -name "__pycache__" -exec rm -r {} +
+	find . -type f -name "*.pyc" -delete

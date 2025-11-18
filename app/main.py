@@ -33,5 +33,5 @@ app.add_exception_handler(RequestValidationError, validation_exception_handler)
 app.add_exception_handler(Exception, unhandled_exception_handler)
 
 
-for r in routers:
-    app.include_router(r)
+for router in routers:
+    app.include_router(router, prefix="/api")
