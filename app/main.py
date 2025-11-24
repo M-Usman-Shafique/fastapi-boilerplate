@@ -12,8 +12,8 @@ from app.configs.exceptions.error_handler import (
     unhandled_exception_handler,
     validation_exception_handler,
 )
+from app.configs.lifespan import lifespan
 from app.configs.settings import get_settings
-from app.database.lifespan import lifespan
 
 settings = get_settings()
 

@@ -2,6 +2,7 @@ from typing import Any
 
 import certifi
 from beanie import init_beanie
+from fastapi import FastAPI
 from pymongo import AsyncMongoClient
 
 from app.api.models.registry import doc_models
@@ -13,12 +14,12 @@ settings = get_settings()
 client: AsyncMongoClient[Any] | None = None
 
 
-async def init_db():
+async def init_db(app: FastAPI):
     global client
     if client is None:
         client = AsyncMongoClient(settings.MONGODB_URI, tlsCAFile=certifi.where())
 
-        db = client[settings.MONGODB_DB]
+        db = client[settings.DB_NAME]
 
         try:
             await db.command("ping")
@@ -27,6 +28,7 @@ async def init_db():
             raise RuntimeError("❌ DB connection failed") from e
 
         await init_beanie(database=db, document_models=doc_models)
+        app.state.db = db
 
 
 async def close_db():

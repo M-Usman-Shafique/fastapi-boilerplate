@@ -37,11 +37,15 @@ dev-run:
 
 prod-start:
 	echo "Starting in PROD mode"
-	ENV=prod uv run uvicorn app.main:app \
-		--loop uvloop \
-		--http httptools \
-		--host 0.0.0.0 \
-		--port 8000
+	ENV=prod gunicorn app.main:app \
+    --workers 4 \
+    --worker-class uvicorn.workers.UvicornWorker \
+    --bind 0.0.0.0:8000 \
+    --timeout 60 \
+    --graceful-timeout 30 \
+    --keep-alive 5 \
+    --log-level info
+
 dev-debug:
 	ENV=dev uv run python -m debugpy --listen 5678 --wait-for-client -m uvicorn app.main:app --reload
 
