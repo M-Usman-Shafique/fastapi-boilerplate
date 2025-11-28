@@ -5,7 +5,7 @@ from app.workflows.schemas.ask import AskState
 
 
 async def build_graph(llm, checkpointer):
-    workflow = StateGraph(AskState)
+    workflow = StateGraph[AskState, None, AskState, AskState](AskState)
 
     ask_node = await get_ask_node(llm)
     workflow.add_node("ask_node", ask_node)
