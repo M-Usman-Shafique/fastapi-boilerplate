@@ -10,13 +10,11 @@ fix:
 typecheck:
 	uv run pyright
 
-dev-check:
-	uv run ruff format . \
-	&& uv run ruff check . \
-	&& uv run pyright
-
 pre-commit-install:
 	uv run pre-commit install --install-hooks
+
+dev-check:
+	uv run pre-commit run --all-files
 
 dev-start:
 	echo "Starting in DEV mode"

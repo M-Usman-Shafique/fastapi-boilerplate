@@ -18,7 +18,12 @@ from app.configs.settings import get_settings
 settings = get_settings()
 
 
-app = FastAPI(title=settings.APP_NAME, lifespan=lifespan)
+app = FastAPI(
+    title=settings.APP_NAME,
+    description="A FastAPI application boilerplate.",
+    version="v1",
+    lifespan=lifespan,
+)
 
 app.add_middleware(
     CORSMiddleware,
